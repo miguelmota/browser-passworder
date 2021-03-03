@@ -1,5 +1,5 @@
 const Unibabel = require('browserify-unibabel')
-if (typeof window === undefined) {
+if (typeof window === 'undefined') {
   global.atob = require('atob')
   const crypto = require('crypto').webcrypto
   crypto.getRandomValues = require('get-random-values')
