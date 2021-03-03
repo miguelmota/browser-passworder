@@ -1,7 +1,7 @@
 {
-  "name": "browser-passworder",
+  "name": "node-passworder",
   "version": "2.0.3",
-  "description": "A simple browserifiable module for password-encrypting JS objects.",
+  "description": "A simple node module for password-encrypting JS objects.",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -12,13 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:flyswatter/browser-passworder.git"
+    "url": "git+ssh://git@github.com:flyswatter/node-passworder.git"
   },
   "keywords": [
     "Browser",
     "password",
     "encryption",
-    "browserify"
+    "browserify",
+    "node"
   ],
   "author": "Dan Finlay",
   "license": "ISC",
@@ -27,6 +28,12 @@
   },
   "homepage": "https://github.com/flyswatter/browser-encryptor#readme",
   "dependencies": {
-    "browserify-unibabel": "^3.0.0"
+    "atob": "^2.1.2",
+    "browserify-unibabel": "^3.0.0",
+    "get-random-values": "^1.2.2"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "testem": "^3.2.0"
   }
 }

@@ -1,4 +1,10 @@
-var Unibabel = require('browserify-unibabel')
+const Unibabel = require('browserify-unibabel')
+if (typeof window === undefined) {
+  global.atob = require('atob')
+  const crypto = require('crypto').webcrypto
+  crypto.getRandomValues = require('get-random-values')
+  global.crypto = crypto
+}
 
 module.exports = {
 
@@ -35,8 +41,8 @@ function encrypt (password, dataObj) {
 function encryptWithKey (key, dataObj) {
   var data = JSON.stringify(dataObj)
   var dataBuffer = Unibabel.utf8ToBuffer(data)
-  var vector = global.crypto.getRandomValues(new Uint8Array(16))
-  return global.crypto.subtle.encrypt({
+  var vector = crypto.getRandomValues(new Uint8Array(16))
+  return crypto.subtle.encrypt({
     name: 'AES-GCM',
     iv: vector,
   }, key, dataBuffer).then(function (buf) {
@@ -79,7 +85,7 @@ function keyFromPassword (password, salt) {
   var passBuffer = Unibabel.utf8ToBuffer(password)
   var saltBuffer = Unibabel.base64ToBuffer(salt)
 
-  return global.crypto.subtle.importKey(
+  return crypto.subtle.importKey(
     'raw',
     passBuffer,
     { name: 'PBKDF2' },
@@ -87,7 +93,7 @@ function keyFromPassword (password, salt) {
     ['deriveBits', 'deriveKey']
   ).then(function (key) {
 
-    return global.crypto.subtle.deriveKey(
+    return crypto.subtle.deriveKey(
       { name: 'PBKDF2',
         salt: saltBuffer,
         iterations: 10000,
@@ -131,7 +137,7 @@ function unprefixedHex (num) {
 
 function generateSalt (byteCount = 32) {
   var view = new Uint8Array(byteCount)
-  global.crypto.getRandomValues(view)
+  crypto.getRandomValues(view)
   var b64encoded = btoa(String.fromCharCode.apply(null, view))
   return b64encoded
 }

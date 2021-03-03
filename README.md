@@ -1,23 +1,25 @@
-# Browser Passworder [![CircleCI](https://circleci.com/gh/flyswatter/browser-passworder.svg?style=svg)](https://circleci.com/gh/flyswatter/browser-passworder)
+# Node Passworder [![CircleCI](https://circleci.com/gh/flyswatter/browser-passworder.svg?style=svg)](https://circleci.com/gh/flyswatter/browser-passworder)
 
 A simple module for encrypting & decrypting Javascript objects with a password in the browser.
 
+Note: This is a fork of [`browser-passworder`](https://github.com/danfinlay/browser-passworder) so it works with Node.js
+
 Serializes the encrypted payload as a string of text for easy storage.
 
-Uses browser native crypto to be the lightest possible module you can have, with the most vetted internals you could ask for (the real guts here are implemented by the browser provider).
+Uses native crypto to be the lightest possible module you can have, with the most vetted internals you could ask for (the real guts here are implemented by node).
 
 ## Installation
 
 You need to have node.js installed.
 
 ```bash
-npm install browser-passworder
+npm install node-passworder
 ```
 
 ## Usage
 
 ```javascript
-var passworder = require('browser-passworder')
+var passworder = require('node-passworder')
 
 var secrets = { coolStuff: 'all', ssn: 'livin large' }
 var password = 'hunter55'
